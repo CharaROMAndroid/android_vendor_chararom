@@ -7,6 +7,10 @@ $(call inherit-product-if-exists, vendor/addons/config.mk)
 PRODUCT_SOURCE_ROOT_DIRS += -kernel/platform
 PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat
 
+ifeq ($(WITH_BCR),true)
+$(call inherit-product, vendor/bcr/bcr.mk)
+endif
+
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
