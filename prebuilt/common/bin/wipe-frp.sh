@@ -3,6 +3,17 @@
 # SPDX-FileCopyrightText: 2025 The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
+echo "WARNING: This will modify the FRP partition."
+echo "Type exactly: Yes, do as I say"
+printf "> "
+read CONFIRM
+
+if [ "$CONFIRM" != "Yes, do as I say" ]; then
+    echo "Confirmation failed. Aborting."
+    exit 1
+fi
+
+echo "Confirmation accepted. Proceeding..."
 
 FRP_BLOCK=${1:-$(getprop ro.frp.pst)}
 
