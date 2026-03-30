@@ -43,7 +43,7 @@ else
 	fi
 fi
 
-REPO_LIST="$(cat .repo/project.list | sed '\?^vendor/crDroidOTA?d')"
+REPO_LIST="$(cat .repo/project.list | sed '\?^vendor/CharaOTA?d')"
 for i in $(seq $changelog_days); do
     After_Epoch=$(( $(date +%s) - (i * 86400) ))
     After_Date=$(date -d "@$After_Epoch" +%m-%d-%Y)
