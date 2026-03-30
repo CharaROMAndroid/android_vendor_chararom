@@ -47,4 +47,5 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.crdroid.build.version=$(CHARAROM_VERSION) \
     ro.chara.build.codename=$(CHARAROM_CODENAME) \
     ro.chara.status=$(CHARAROM_STATUS) \
-    ro.chara.build.status=$(LINEAGE_BUILDTYPE)
+    ro.chara.build.status=$(LINEAGE_BUILDTYPE)\
+    ro.chararom.device=$(LINEAGE_BUILD)

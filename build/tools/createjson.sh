@@ -16,7 +16,7 @@
 #
 
 #$1=TARGET_DEVICE, $2=PRODUCT_OUT, $3=FILE_NAME
-existingOTAjson=./vendor/crDroidOTA/$1.json
+existingOTAjson=./vendor/CharaOTA/$1.json
 output=$2/$1.json
 
 # Cleanup old file
@@ -45,6 +45,7 @@ if [ -f $existingOTAjson ]; then
     RECOVERY=$(extract_field "recovery")
     PAYPAL=$(extract_field "paypal")
     TELEGRAM=$(extract_field "telegram")
+    STOAT=$(extract_field "stoat")
     DT=$(extract_field "dt")
     COMMON_DT=$(extract_field "common-dt")
     KERNEL=$(extract_field "kernel")
@@ -74,7 +75,7 @@ cat <<EOF >$output
             "oem": "${OEM:-}",
             "device": "${DEVICE:-}",
             "filename": "$FILENAME",
-            "download": "https://sourceforge.net/projects/crdroid/files/$1/$V_MAX.x/$3/download",
+            "download": "https://github.com/CharaROMAndroid/android_vendor_CharaOTA/releases",
             "timestamp": $TIMESTAMP,
             "md5": "$MD5",
             "sha256": "$SHA256",
@@ -91,6 +92,7 @@ cat <<EOF >$output
             "recovery": "${RECOVERY:-}",
             "paypal": "${PAYPAL:-}",
             "telegram": "${TELEGRAM:-}",
+            "stoat": "${STOAT:-}",
             "dt": "${DT:-}",
             "common-dt": "${COMMON_DT:-}",
             "kernel": "${KERNEL:-}"
@@ -101,7 +103,7 @@ EOF
 
 if [ ! -f $existingOTAjson ]; then
     echo "There is no official support for this device yet"
-    echo "Consider adding official support by reading the documentation at https://github.com/crdroidandroid/android_vendor_crDroidOTA/blob/16.0/README.md"
+    echo "Consider adding official support by reading the documentation at https://github.com/CharaROMAndroid/android_vendor_CharaOTA/blob/16.0/README.md"
 fi
 
 echo "JSON file generation completed"
