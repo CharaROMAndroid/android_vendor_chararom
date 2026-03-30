@@ -1,6 +1,8 @@
 PRODUCT_VERSION_MAJOR = 2
 PRODUCT_VERSION_MINOR = 0
+# Android base version
 ANDROID_VERSION = 17
+
 
 # CharaROM versioning
 CHARAROM_VERSION := 2.0
