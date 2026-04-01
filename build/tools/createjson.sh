@@ -54,8 +54,8 @@ fi
 # Generate JSON fields
 FILENAME=$3
 VERSION=$(echo "$3" | cut -d'-' -f5 | sed 's/v//')
-V_MAX=$(echo "$VERSION" | cut -d'.' -f1)
-V_MIN=$(echo "$VERSION" | cut -d'.' -f2)
+V_MAX=$(echo "$CHARAROM_VERSION" | cut -d'.' -f1)
+V_MIN=$(echo "$CHARAROM_VERSION" | cut -d'.' -f2)
 VERSION="$V_MAX.$V_MIN"
 
 BUILDPROP="$2/system/build.prop"
