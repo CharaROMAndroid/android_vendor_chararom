@@ -1,6 +1,6 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
-$(call inherit-product-if-exists, vendor/lineage/config/crdroid.mk)
+$(call inherit-product-if-exists, vendor/lineage/config/chararom.mk)
 $(call inherit-product-if-exists, vendor/addons/config.mk)
 
 # Exclude repos from bp scanning
