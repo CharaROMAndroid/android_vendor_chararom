@@ -141,9 +141,9 @@ include vendor/lineage/bootanimation/prebuilts/prebuilts.mk
 endif
 TARGET_SCREEN_WIDTH ?= 1080
 TARGET_SCREEN_HEIGHT ?= 1920
-#PRODUCT_PACKAGES += \
-#    bootanimation.zip \
-#    bootanimation-dark.zip
+PRODUCT_PACKAGES += \
+    bootanimation.zip \
+    bootanimation-dark.zip
 
 # Charger
 PRODUCT_PACKAGES += \
