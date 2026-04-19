@@ -20,9 +20,11 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_COPY_FILES += \
     vendor/lineage/bootanimation/prebuilts/bootanimation_aokp.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_aokp.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_cm.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_cm.zip \
+    vendor/lineage/bootanimation/prebuilts/bootanimation_cr.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_vr.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_ctos.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_ctos.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_cyberpunk.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_cyberpunk.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_du.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_du.zip \
+    vendor/lineage/bootanimation/prebuilts/bootanimation_evo_default.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_evo_default.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_evo_reveal.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_evo_reveal.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_google.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_google.zip \
     vendor/lineage/bootanimation/prebuilts/bootanimation_google_monet.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation_google_monet.zip \
