@@ -6,7 +6,7 @@ ANDROID_VERSION := 16
 # CharaROM versioning
 CHARAROM_VERSION := 1.0
 CHARAROM_CODENAME := Hershey
-CHARAROM_STATUS := Alpha
+CHARAROM_STATUS := Beta
 
 # Build date (append time if requested)
 ifeq ($(LINEAGE_VERSION_APPEND_TIME_OF_DAY),true)
