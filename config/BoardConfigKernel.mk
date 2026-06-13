@@ -143,10 +143,10 @@ endif
 KERNEL_BAZEL_FLAGS := $(TARGET_KERNEL_BAZEL_FLAGS)
 KERNEL_MAKE_FLAGS :=
 
-# Use "safe" default values for kernel build user & host - matches Pixels, helps avoid detection
+# Yeah, turns out these aren't detected.
 KERNEL_MAKE_FLAGS += \
-    KBUILD_BUILD_USER="build-user" \
-    KBUILD_BUILD_HOST="build-host"
+    KBUILD_BUILD_USER="chara" \
+    KBUILD_BUILD_HOST="chocolate"
 
 ifeq ($(TARGET_KERNEL_UNSAFE_DDK_HEADERS),true)
     KERNEL_BAZEL_FLAGS += --//build/kernel/kleaf:allow_ddk_unsafe_headers
