@@ -1021,10 +1021,8 @@ function build_kernel() {
 }
 
 function generate_host_overrides() {
-    export BUILD_USERNAME=android-build
-    HEX=$(openssl rand -hex 8)
-    ALPHA=$(cat /dev/urandom | tr -dc 'a-z0-9' | head -c 4)
-    export BUILD_HOSTNAME="r-${HEX}-${ALPHA}"
+    export BUILD_USERNAME=chara
+    export BUILD_HOSTNAME="chocolate"
     echo "BUILD_USERNAME=$BUILD_USERNAME"
     echo "BUILD_HOSTNAME=$BUILD_HOSTNAME"
 }

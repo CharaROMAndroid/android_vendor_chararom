@@ -17,7 +17,7 @@ PRODUCT_SOURCE_ROOT_DIRS += -kernel/platform
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
-PRODUCT_BRAND ?= crDroidAndroid
+PRODUCT_BRAND ?= CharaROMAndroid
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_PRODUCT_PROPERTIES += \

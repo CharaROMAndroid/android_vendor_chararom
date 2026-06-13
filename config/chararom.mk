@@ -56,10 +56,6 @@ PRODUCT_PACKAGES += \
     OmniJaws \
     OmniStyle
 
-ifneq ($(TARGET_DISABLE_MATLOG),true)
-PRODUCT_PACKAGES += \
-    MatLog
-endif
 
 ifneq ($(TARGET_FACE_UNLOCK_SUPPORTED),false)
 PRODUCT_PACKAGES += \
