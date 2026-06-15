@@ -54,7 +54,8 @@ PRODUCT_PACKAGES += \
     LMOFreeform \
     LMOFreeformSidebar \
     OmniJaws \
-    OmniStyle
+    OmniStyle\
+    F-DroidPrivilegedExtension\
 
 
 ifneq ($(TARGET_FACE_UNLOCK_SUPPORTED),false)
