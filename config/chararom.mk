@@ -50,7 +50,7 @@ PRODUCT_PACKAGES += \
     LMOFreeformSidebar \
     OmniJaws \
     OmniStyle\
-    F-DroidPrivilegedExtension\
+    #F-DroidPrivilegedExtension\
 
 
 # DeviceAsWebcam
