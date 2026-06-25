@@ -22,6 +22,10 @@ PRODUCT_PRODUCT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.input.video_enabled=false
 
+# Default notification/alarm sounds
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.config.alarm_alert=Krypton.ogg
+
 # Blur
 ifneq ($(TARGET_SUPPORTS_BLUR),false)
 PRODUCT_PRODUCT_PROPERTIES += ro.surface_flinger.supports_background_blur=1
