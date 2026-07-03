@@ -22,7 +22,6 @@
     </install-in-user-type>
 
     <!-- System packages that should not be pre-installed on the CLONE profile. -->
-    </install-in-user-type>
     <!-- Camera -->
     <install-in-user-type package="com.android.camera">
         <install-in user-type="FULL" />
