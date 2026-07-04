@@ -65,3 +65,5 @@ PRODUCT_PACKAGES += \
 PRODUCT_VENDOR_PROPERTIES += \
     ro.usb.uvc.enabled=true
 endif
+
+include $(call inherit-product, external/prebuiltapks/config/common.mk)
