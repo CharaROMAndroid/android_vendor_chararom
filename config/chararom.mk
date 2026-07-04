@@ -52,10 +52,8 @@ PRODUCT_PACKAGES += \
     BatteryStatsViewer \
     GameSpace \
     LMOFreeform \
-    LMOFreeformSidebar \
     OmniJaws \
     OmniStyle\
-    #F-DroidPrivilegedExtension\
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
