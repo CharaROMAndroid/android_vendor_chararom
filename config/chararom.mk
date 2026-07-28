@@ -64,6 +64,10 @@ PRODUCT_VENDOR_PROPERTIES += \
     ro.usb.uvc.enabled=true
 endif
 
+# Maintainer prop
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.chara.maintainer="$(CHARA_MAINTAINER)"
+
 # Use a generic profile based boot image by default
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_COPY_FILES += \
