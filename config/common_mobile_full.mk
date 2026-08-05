@@ -9,7 +9,8 @@ PRODUCT_PACKAGES += \
     Etar \
     Profiles \
     Recorder \
-    Seedvault 
+    Seedvault \
+    F-DroidPrivilegedExtension 
 
 ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \
