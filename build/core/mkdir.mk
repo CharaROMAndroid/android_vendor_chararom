@@ -14,15 +14,11 @@
 
 ifneq ($(LOCAL_MODULE_MAKEFILE),$(SOONG_ANDROID_MK))
 $(call pretty-error,mkdir.mk may only be used from Soong)
+endif
 
 # Overlays
 PRODUCT_PACKAGES += \
     CaptiveServerOverlay
-
-ifneq ($(IS_OFFICIAL), false)
-PRODUCT_PACKAGES += \
-    NeotericUpdatesOverlay
-endif
 
 include $(BUILD_SYSTEM)/base_rules.mk
 
