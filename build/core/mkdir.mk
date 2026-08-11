@@ -16,10 +16,6 @@ ifneq ($(LOCAL_MODULE_MAKEFILE),$(SOONG_ANDROID_MK))
 $(call pretty-error,mkdir.mk may only be used from Soong)
 endif
 
-# Overlays
-PRODUCT_PACKAGES += \
-    CaptiveServerOverlay
-
 include $(BUILD_SYSTEM)/base_rules.mk
 
 $(LOCAL_SOONG_INSTALL_DIR):

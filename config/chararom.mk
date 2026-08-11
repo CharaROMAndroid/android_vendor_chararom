@@ -53,7 +53,8 @@ PRODUCT_PACKAGES += \
     GameSpace \
     LMOFreeform \
     OmniJaws \
-    OmniStyle\
+    OmniStyle \
+    CaptiveServerOverlay \
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
