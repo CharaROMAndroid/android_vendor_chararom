@@ -6,11 +6,8 @@ PRODUCT_SIZE := full
 # Apps
 PRODUCT_PACKAGES += \
     Camelot \
-    Etar \
     Profiles \
-    Recorder \
-    Seedvault \
-    F-DroidPrivilegedExtension 
+    Seedvault
 
 ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \

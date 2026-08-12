@@ -31,12 +31,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml
 
-# ColumbusService
-ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
-PRODUCT_PACKAGES += \
-    ColumbusService
-endif
-
 # Enable Material Design 3 Expressive
 PRODUCT_PRODUCT_PROPERTIES += is_expressive_design_enabled=true
 
@@ -55,6 +49,7 @@ PRODUCT_PACKAGES += \
     OmniJaws \
     OmniStyle \
     CaptiveServerOverlay \
+    F-DroidPrivilegedExtension \
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
