@@ -50,6 +50,9 @@ PRODUCT_PACKAGES += \
     OmniJaws \
     OmniStyle \
     CaptiveServerOverlay \
+    F-DroidPrivilegedExtension \
+    EmergencyButton \
+    TriggerResponse \
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
