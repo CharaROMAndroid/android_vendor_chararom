@@ -12,6 +12,7 @@ include vendor/lineage/config/lineage_audio.mk
 PRODUCT_PACKAGES += \
     AvatarPicker \
     Backgrounds \
+    Glimpse \
     LatinIME
 
 ifeq ($(PRODUCT_TYPE), go)
