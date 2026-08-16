@@ -57,6 +57,10 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
 
+# F-Droid XML
+PRODUCT_PACKAGES += \
+    additional_repos.xml-fdroid
+    
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
