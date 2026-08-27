@@ -25,7 +25,11 @@ $(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) $(SHA256) $(LINEAGE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LINEAGE_TARGET_PACKAGE).sha256sum
 	$(hide) ./vendor/lineage/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(LINEAGE_VERSION).zip
 	$(hide) rm -rf $(call intermediates-dir-for,PACKAGING,target_files)
-	@echo "Package Complete: $(LINEAGE_TARGET_PACKAGE)" >&2
+	@echo "Your device has just got a lot more chaotic =)" >&2
+	@echo "" >&2
+	@echo "You can find the result of your work here: $(LINEAGE_TARGET_PACKAGE)" >&2
+	@echo "" >&2
+	@echo "If there are any problems, don't hesitate to reach out! Enjoy!" >&2
 
-.PHONY: bacon
-bacon: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
+.PHONY: chaos
+chaos: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
