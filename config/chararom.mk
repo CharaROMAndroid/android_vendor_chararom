@@ -24,7 +24,8 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Default notification/alarm sounds
 PRODUCT_PRODUCT_PROPERTIES += \
-    ro.config.alarm_alert=Krypton.ogg
+    ro.config.alarm_alert=Krypton.ogg \
+    ro.config.ringtone=Champagne_Edition.ogg
 
 # Blur
 ifneq ($(TARGET_SUPPORTS_BLUR),false)
