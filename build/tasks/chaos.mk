@@ -33,7 +33,7 @@ $(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
 
 
 .PHONY: chaos bacon
-live: $(CIRCLE_TARGET_PACKAGE) $(DEFAULT_GOAL)
+chaos: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
 
 bacon:
 	@vendor/lineage/build/tools/lineage_build_compat.sh
