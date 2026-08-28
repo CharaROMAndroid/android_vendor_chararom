@@ -44,6 +44,10 @@ PRODUCT_PACKAGES += \
     ColumbusService
 endif
 
+# PackageGuard privapp permissions
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/permissions/privapp-permissions-packageguard.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-packageguard.xml
+
 # Enable Material Design 3 Expressive
 PRODUCT_PRODUCT_PROPERTIES += is_expressive_design_enabled=true
 
@@ -64,6 +68,7 @@ PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
     EmergencyButton \
     TriggerResponse \
+    PackageGuard \
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
