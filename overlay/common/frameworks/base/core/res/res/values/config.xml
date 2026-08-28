@@ -78,7 +78,7 @@
     <bool name="config_enableMultiUserUI">true</bool>
 
     <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">4</integer>
+    <integer name="config_multiuserMaximumUsers">16</integer>
 
    <!-- Set icon mask to circle -->
    <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
@@ -468,4 +468,35 @@
 
     <!-- Name of the font family to use in the default lockscreen clock -->
     <string name="config_clockFontFamily" translatable="false" />
+
+    <!-- If true, all guest users created on the device will be ephemeral. -->
+    <bool name="config_guestUserEphemeral">false</bool>
+
+    <!-- This config is ued to determine whether animations are allowed in low power mode. -->
+    <bool name="config_allowAnimationsInLowPowerMode">false</bool>
+
+    <!-- Flag indicating whether the IMS service can be turned off. If false then
+        the service will not be turned-off completely (the ImsManager.turnOffIms() will
+        be disabled) but individual Features can be disabled using ImsConfig.setFeatureValue() -->
+    <bool name="imsServiceAllowTurnOff">true</bool>
+    
+    <!-- Package name for default network scorer app -->
+    <string name="config_defaultNetworkScorerPackageName"></string>
+
+    <!-- Package name of the default network recommendation app -->
+    <string name="config_defaultNetworkRecommendationProviderPackage" translatable="false"></string>
+
+    <!-- Integer indicating wpa_supplicant scan interval in milliseconds -->
+    <integer translatable="false" name="config_wifi_supplicant_scan_interval">30000</integer>
+
+    <!-- Boolean indicating whether or not wifi firmware debugging is enabled -->
+    <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
+
+    <!-- Specifies whether the permissions needed by a legacy app should be
+     reviewed before any of its components can run. A legacy app is one
+     with targetSdkVersion < 23, i.e apps using the old permission model.
+     If review is not required, permissions are reviewed before the app
+     is installed. -->
+    <bool name="config_permissionReviewRequired">true</bool>
+
 </resources>
