@@ -62,7 +62,7 @@ PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
     EmergencyButton \
     TriggerResponse \
-    PackageGuard \
+    # PackageGuard \ # Not yet ready
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)
