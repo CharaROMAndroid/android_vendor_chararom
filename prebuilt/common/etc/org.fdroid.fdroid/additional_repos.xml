@@ -368,14 +368,6 @@
         <item>ignore</item> 
         <item>B90FC7691EC5BE977DCBBCB18C3984C794CCAFA5BB8712ED2D64F9FD8703B636</item> 
         
-        <item>Metatrans Apps Repository</item> 
-        <item>https://fdroid.metatransapps.com/fdroid/repo</item> 
-        <item>This is the repository of Metatrans Apps, which is compatible with the F-Droid clients widely used by the F-Droid Community. While not all apps in this repository are open source yet, they are free for use.</item> 
-        <item>16844057</item> 
-        <item>1</item> 
-        <item>ignore</item> 
-        <item>214027CD55300B837A93B43717B190DD4867CDB20FAABD8853DEF55BD0FF6A0B</item> 
-        
         <item>Ltt.rs for Android</item> 
         <item>https://ltt.rs/fdroid/repo</item> 
         <item>This repository contains the latest version of Ltt.rs for Android build directly by the developer.</item> 
