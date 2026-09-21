@@ -167,15 +167,7 @@
         <item>1</item> 
         <item>ignore</item> 
         <item>7E04F902940A2AEDAC30E491A5CE7ADCC74A3F73B43459E4448222F3EEE629EF</item> 
-        
-        <item>Brave Browser</item> 
-        <item>https://brave-browser-apk-release.s3.brave.com/fdroid/repo</item> 
-        <item>This is a Brave Browser official repository.</item> 
-        <item>16844057</item> 
-        <item>1</item> 
-        <item>ignore</item> 
-        <item>3C60DE135AA19EC949E998469C908F7171885C1E2805F39EB403DDB0F37B4BD2</item> 
-        
+                
         <item>Thunderbird F-Droid repository</item> 
         <item>https://thunderbird.github.io/fdroid-thunderbird/repo</item> 
         <item>This repository hosts Android Apps provided by Thunderbird.</item> 
@@ -209,7 +201,7 @@
         <item>E2EE4AA4380F0D3B3CF81EB17F5E48F827C3AA77122D9AD330CC441650894574</item> 
         
         <item>IodéOS apps</item> 
-        <item>https://raw.githubusercontent.com/iodeOS/fdroid/master/fdroid/repo</item>
+        <item>https://fdroid.iode.tech/repo</item>
         <item>This is a repository of iodéOS apps to be used with F-Droid.</item> 
         <item>16844057</item> 
         <item>1</item> 
