@@ -541,7 +541,7 @@
         the service will not be turned-off completely (the ImsManager.turnOffIms() will
         be disabled) but individual Features can be disabled using ImsConfig.setFeatureValue() -->
     <bool name="imsServiceAllowTurnOff">true</bool>
-    
+
     <!-- Package name for default network scorer app -->
     <string name="config_defaultNetworkScorerPackageName"></string>
 

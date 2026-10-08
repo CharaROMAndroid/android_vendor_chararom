@@ -10,7 +10,7 @@ PRODUCT_PACKAGES += \
     Profiles \
     Recorder \
     Seedvault \
-    F-DroidPrivilegedExtension 
+    F-DroidPrivilegedExtension
 
 ifneq ($(PRODUCT_NO_CAMERA),true)
 PRODUCT_PACKAGES += \

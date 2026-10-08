@@ -4,4 +4,3 @@ flag_value {
   state: ENABLED
   permission: READ_ONLY
 }
-
