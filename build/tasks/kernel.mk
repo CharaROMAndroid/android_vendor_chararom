@@ -391,10 +391,10 @@ ifneq ($(filter $(FULL_KERNEL_BUILD),true)$(TARGET_KERNEL_PLATFORM_TARGET),)
 # Depmod requires a well-formed kernel version so 0.0 is used as a placeholder.
 define build-image-kernel-modules-lineage
     mkdir -p $(2)/lib/modules$(6)
-    cp $(1) $(2)/lib/modules$(6)
+    if [ -n "$(1)" ]; then cp $(1) $(2)/lib/modules$(6); fi
     rm -rf $(4)
     mkdir -p $(4)/lib/modules/0.0/$(3)lib/modules$(6)
-    cp $(1) $(4)/lib/modules/0.0/$(3)lib/modules$(6)
+    if [ -n "$(1)" ]; then cp $(1) $(4)/lib/modules/0.0/$(3)lib/modules$(6); fi
     if [ -n "$(8)" ]; then cp -r $(8) $(4)/lib/modules/0.0/; fi
     $(DEPMOD) -ae -F $(KERNEL_OUT)/System.map -b $(4) 0.0 2>$(4)/depmod_stderr
     cat $(4)/depmod_stderr >&2
@@ -428,10 +428,12 @@ define build-image-kernel-modules-lineage
         echo lib/modules$(6)/modules.dep >> "$(7)"; \
         if [ ! -z "$(5)" ]; then echo lib/modules$(6)/modules.load >> "$(7)"; fi; \
         echo lib/modules$(6)/modules.softdep >> "$(7)"; \
-        for MODULE in $(1); do \
-            BASENAME=$$(basename $$MODULE); \
-            echo lib/modules$(6)/"$$BASENAME" >> "$(7)"; \
-        done; \
+        if [ -n "$(1)" ]; then \
+            for MODULE in $(1); do \
+                BASENAME=$$(basename $$MODULE); \
+                echo lib/modules$(6)/"$$BASENAME" >> "$(7)"; \
+            done; \
+        fi; \
         sort -u "$(7)" -o "$(7)"; \
     fi;
 endef
@@ -554,7 +556,7 @@ $(TARGET_PREBUILT_INT_KERNEL): $(KERNEL_CONFIG) $(DEPMOD) $(DTC) $(KERNEL_MODULE
 				$(eval p := $(subst :,$(space),$(s))) \
 				; mv $$(echo $$all_modules | tr ' ' '\n' | grep /$(word 1,$(p))) $$kernel_modules_dir/$(word 2,$(p))); \
 			all_modules=$$(find $$kernel_modules_dir -type f -name '*.ko'); \
-			dup_modules=$$(echo $$all_modules | tr ' ' '\n' | xargs -n1 basename | sort | uniq -d); \
+			dup_modules=$$(if [ -n "$$all_modules" ]; then echo $$all_modules | tr ' ' '\n' | xargs -n1 basename | sort | uniq -d; fi); \
 			$(if $$dup_modules,\
 				err=$$(for m in $$dup_modules; do \
 					echo "ERROR: Duplicate module $$m" 1>&2 && echo "dup"; \
@@ -585,7 +587,7 @@ $(TARGET_PREBUILT_INT_KERNEL): $(KERNEL_CONFIG) $(DEPMOD) $(DTC) $(KERNEL_MODULE
 					done) || exit "$$?"; \
 				fi; \
 				,\
-				($(call build-image-kernel-modules-lineage,$$all_modules,$(KERNEL_MODULES_OUT),$(KERNEL_MODULE_MOUNTPOINT)/,$(KERNEL_DEPMOD_STAGING_DIR),$(BOARD_VENDOR_KERNEL_MODULES_LOAD),,$(KERNEL_MODULES_PARTITION_FILE_LIST),)) || exit "$$?"; \
+				if [ -n "$$all_modules" ]; then ($(call build-image-kernel-modules-lineage,$$all_modules,$(KERNEL_MODULES_OUT),$(KERNEL_MODULE_MOUNTPOINT)/,$(KERNEL_DEPMOD_STAGING_DIR),$(BOARD_VENDOR_KERNEL_MODULES_LOAD),,$(KERNEL_MODULES_PARTITION_FILE_LIST),)) || exit "$$?"; fi; \
 			) \
 			$(if $(BOOT_KERNEL_MODULES)$(BOOT_KERNEL_MODULES_FINDER),\
 				$(if $(BOOT_KERNEL_MODULES_FINDER), \
