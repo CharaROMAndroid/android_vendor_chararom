@@ -345,3 +345,6 @@ include vendor/lineage/config/version.mk
 -include vendor/lineage-priv/keys/keys.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
+
+# Permissionless isolated sanitizer required by the custom font pipeline.
+PRODUCT_PACKAGES += FontSanitizer
