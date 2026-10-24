@@ -23,3 +23,9 @@ prebuilt_etc {
     sub_dir: "org.fdroid.fdroid",
     src: "etc/org.fdroid.fdroid/additional_repos.xml",
 }
+prebuilt_etc {
+    name: "additional_repos.json-fdroid",
+    filename: "additional_repos.json",
+    sub_dir: "org.fdroid.fdroid",
+    src: "etc/org.fdroid.fdroid/additional_repos.json",
+}
