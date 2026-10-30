@@ -42,8 +42,9 @@ ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable ADB authentication
 PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
 else
-ifdef WITH_ADB_INSECURE
-# Forcebly disable ADB authentication
+# Insecure ADB is an explicit debug-build opt-in, never a user-build override.
+ifeq ($(TARGET_BUILD_VARIANT):$(WITH_ADB_INSECURE),userdebug:true)
+# Disable ADB authentication for opted-in userdebug builds.
 PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
 else
 # Enable ADB authentication
