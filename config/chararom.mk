@@ -38,12 +38,6 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml
 
-# ColumbusService
-ifneq ($(TARGET_SUPPORTS_QUICK_TAP),false)
-PRODUCT_PACKAGES += \
-    ColumbusService
-endif
-
 # PackageGuard privapp permissions
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/permissions/privapp-permissions-packageguard.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-packageguard.xml
