@@ -19,6 +19,7 @@ import glob
 import json
 import netrc
 import os
+import re
 import socket
 import ssl
 import subprocess
@@ -42,6 +43,9 @@ custom_default_revision = "17.0"
 custom_dependencies = "crdroid.dependencies"
 org_manifest = "crdroidandroid"  # leave empty if org is provided in manifest
 org_display = "crDroid Android"  # needed for displaying
+
+manifests_dir = ".repo/manifests"
+kernel_snippet_template = "snippets/kernel-%s.xml"
 
 github_auth = None
 
@@ -110,52 +114,144 @@ def get_manifest_path():
         return '.repo/manifests/%s' % m.find('include').get('name')
 
 
-def get_from_manifest(device_name):
-    # Look across all local manifest snippets, not just roomservice.xml
-    for path in glob.glob('.repo/local_manifests/*.xml'):
+def safe_manifest_path(base, name):
+    # Never allow dependency metadata/includes to escape their manifest root,
+    # including via symlinks. repo include names are always relative.
+    if not isinstance(name, str) or not name or os.path.isabs(name):
+        raise ValueError("Invalid manifest include name: %r" % name)
+    if '..' in name.replace('\\', '/').split('/'):
+        raise ValueError("Manifest include traversal: %r" % name)
+    root = os.path.realpath(base)
+    path = os.path.realpath(os.path.join(base, name))
+    if os.path.commonpath((root, path)) != root:
+        raise ValueError("Manifest include escapes root: %r" % name)
+    return path
+
+
+def validated_kernel_version(version):
+    if not isinstance(version, str) or not re.fullmatch(r'[0-9]+\.[0-9]+(?:\.[0-9]+)?', version):
+        raise ValueError("Invalid kernel version: %r" % version)
+    return version
+
+
+def scan_manifests(manifest_path=None):
+    """Walk the main manifest and every local manifest, following <include>
+    elements, and return (project_paths, included_files).
+
+    project_paths  - set of project paths (falls back to name, like repo does)
+    included_files - set of real paths of every manifest file pulled in
+                     through an <include>, so an include can be matched no
+                     matter which manifest it was written in."""
+    project_paths = set()
+    included_files = set()
+    seen = set()
+
+    def walk(path, include_base):
+        real = os.path.realpath(path)
+        if real in seen:
+            return
+        seen.add(real)
         try:
-            man = ElementTree.parse(path).getroot()
-        except (IOError, ElementTree.ParseError):
-            continue
-        for local_path in man.findall('project'):
-            lp = (local_path.get('path') or '').strip('/')
-            if lp.startswith('device/') and lp.endswith('/' + device_name):
-                return lp
+            root = ElementTree.parse(path).getroot()
+        except (IOError, OSError, ElementTree.ParseError):
+            return
+        for elem in root:
+            if elem.tag == 'project':
+                p = elem.get('path') or elem.get('name')
+                if p:
+                    project_paths.add(p.strip('/'))
+            elif elem.tag == 'include':
+                name = elem.get('name')
+                if name:
+                    inc = safe_manifest_path(include_base, name)
+                    included_files.add(os.path.realpath(inc))
+                    # Once an include enters the main manifest repository,
+                    # nested names resolve against that repository root.
+                    main_root = os.path.realpath(manifests_dir)
+                    next_base = (manifests_dir if os.path.commonpath((main_root, inc)) == main_root
+                                 else include_base)
+                    walk(inc, next_base)
+
+    # Main manifest: includes resolve relative to .repo/manifests
+    if manifest_path is not None:
+        walk(manifest_path, manifests_dir)
+    else:
+        walk('.repo/manifest.xml', manifests_dir)
+        # Local manifests: includes resolve relative to .repo
+        for path in sorted(glob.glob('.repo/local_manifests/*.xml')):
+            walk(path, '.repo')
+
+    return project_paths, included_files
+
+
+def get_manifest_project_paths(manifest_path):
+    return sorted(scan_manifests(manifest_path)[0])
+
+
+def get_from_manifest(device_name):
+    for path in sorted(scan_manifests()[0]):
+        if path.startswith('device/') and path.endswith('/' + device_name):
+            return path
     return None
 
 
 def is_in_manifest(project_path):
-    # Search across all files inside .repo/local_manifests/
-    for path in glob.glob('.repo/local_manifests/*.xml'):
-        try:
-            lm = ElementTree.parse(path).getroot()
-        except (IOError, ElementTree.ParseError):
-            continue
-        for local_path in lm.findall('project'):
-            if local_path.get('path') == project_path:
-                return True
+    project_paths, _ = scan_manifests()
+    return project_path.strip('/') in project_paths
 
-    # Also search in the main manifest so we don't shadow upstream entries
-    try:
-        lm = ElementTree.parse(get_manifest_path()).getroot()
-    except (IOError, ElementTree.ParseError):
-        lm = ElementTree.Element('manifest')
-    for local_path in lm.findall('project'):
-        if local_path.get('path') == project_path:
-            return True
 
-    return False
+def kernel_snippet_file(version):
+    return safe_manifest_path(manifests_dir, kernel_snippet_template % validated_kernel_version(version))
+
+
+def kernel_include_name(version):
+    # Name as written in a local manifest (relative to .repo)
+    validated_kernel_version(version)
+    return "manifests/" + kernel_snippet_template % version
+
+
+def is_kernel_included(version):
+    _, included_files = scan_manifests()
+    return os.path.realpath(kernel_snippet_file(version)) in included_files
 
 
 def add_to_manifest(repos, fallback_branch=None):
+    for repo in repos:
+        if repo.get('type', 'project') == 'kernel':
+            kernel_snippet_file(repo.get('version'))
     if dryrun:
         for repo in repos:
-            print('[Dry run] Would add: %s -> %s' % (repo['repository'], repo['target_path']))
+            if repo.get('type', 'project') == 'kernel':
+                print('[Dry run] Would include: %s'
+                      % kernel_include_name(repo['version']))
+            else:
+                print('[Dry run] Would add: %s -> %s'
+                      % (repo['repository'], repo['target_path']))
         return
 
     lm = load_manifest(custom_local_manifest)
 
     for repo in repos:
+        repo_type = repo.get('type', 'project')
+
+        if repo_type == 'kernel':
+            version = repo['version']
+            include_name = kernel_include_name(version)
+            if is_kernel_included(version):
+                print('already included: %s' % include_name)
+                continue
+
+            print('Adding dependency include:\nKernel: %s\nSnippet: %s\n'
+                  % (version, include_name))
+            include = ElementTree.Element(
+                "include",
+                attrib={
+                    "name": include_name,
+                }
+            )
+            lm.append(include)
+            continue
+
         repo_name = repo['repository']
         repo_path = repo['target_path']
         if 'branch' in repo and repo['branch']:
@@ -246,6 +342,51 @@ def fetch_dependencies(repo_path, fallback_branch=None):
     invalid_dependency = False
 
     for dependency in dependencies:
+        dependency_type = dependency.get('type', 'project')
+
+        if dependency_type == 'kernel':
+            version = dependency.get('version')
+            if not isinstance(version, str) or not version.strip():
+                print("Error: kernel dependency needs a string 'version' "
+                      "(e.g. \"6.6\"): %r" % dependency)
+                invalid_dependency = True
+                continue
+            version = version.strip()
+            dependency['version'] = version
+
+            try:
+                snippet = kernel_snippet_file(version)
+                snippet_paths = get_manifest_project_paths(snippet)
+            except ValueError as error:
+                print("Error: %s" % error)
+                invalid_dependency = True
+                continue
+            if not os.path.isfile(snippet):
+                print("Error: kernel snippet %s not found. It must exist in "
+                      "the manifest repo as %s."
+                      % (snippet, kernel_snippet_template % version))
+                invalid_dependency = True
+                continue
+
+            if not is_kernel_included(version):
+                fetch_list.append(dependency)
+                for p in snippet_paths:
+                    if p not in syncable_repos:
+                        syncable_repos.append(p)
+            else:
+                print("Kernel snippet already included: %s" % snippet)
+                # Included but possibly not synced yet (e.g. partial sync)
+                for p in snippet_paths:
+                    if not os.path.isdir(p) and p not in syncable_repos:
+                        syncable_repos.append(p)
+            continue
+
+        if dependency_type != 'project':
+            print("Error: unsupported dependency type '%s': %r"
+                  % (dependency_type, dependency))
+            invalid_dependency = True
+            continue
+
         repo = dependency.get('repository')
         target = dependency.get('target_path')
         if not repo or not target:

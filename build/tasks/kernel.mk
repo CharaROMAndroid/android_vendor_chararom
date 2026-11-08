@@ -29,6 +29,8 @@
 #                                          Same as TARGET_KERNEL_CONFIG, but paths are specified
 #                                          instead of filenames.
 #
+#   TARGET_KERNEL_KCONFIG_EXT_PREFIX   = Optional external Kconfig.ext directory.
+#
 #   BOARD_KERNEL_IMAGE_NAME            = Built image name
 #                                          for ARM use: zImage
 #                                          for ARM64 use: Image.gz
@@ -280,6 +282,10 @@ endif
 
 ifneq ($(TARGET_KERNEL_ADDITIONAL_FLAGS),)
     KERNEL_MAKE_FLAGS += $(TARGET_KERNEL_ADDITIONAL_FLAGS)
+endif
+
+ifneq ($(TARGET_KERNEL_KCONFIG_EXT_PREFIX),)
+    KERNEL_MAKE_FLAGS += KCONFIG_EXT_PREFIX=$(shell python3 -c 'import os,sys;print(os.path.relpath(*(sys.argv[1:])))' $(TARGET_KERNEL_KCONFIG_EXT_PREFIX) $(KERNEL_SRC))/
 endif
 
 # Internal implementation of make-kernel-target

@@ -320,6 +320,7 @@ PRODUCT_PACKAGE_OVERLAYS += \
 
 PRODUCT_PACKAGES += \
     DocumentsUIOverlay \
+    LineageFrameworksOverlay \
     NetworkStackOverlay \
     NfcOverlay \
     PermissionControllerOverlay
