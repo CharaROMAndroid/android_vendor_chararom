@@ -282,6 +282,7 @@ ifneq ($(TARGET_BUILD_VARIANT),user)
 # Root
 PRODUCT_PACKAGES += \
     adb_root
+ifeq ($(TARGET_BUILD_VARIANT),eng)
 ifeq ($(WITH_SU),true)
 PRODUCT_PACKAGES += \
     su
