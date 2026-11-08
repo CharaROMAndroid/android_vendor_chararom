@@ -72,55 +72,34 @@
 
     <!-- If this is true, long press on power button will be available from a
          non-interactive state. -->
-    <bool name="config_supportLongPressPowerWhenNonInteractive">true</bool>
+
 
     <!--  Whether Multiuser UI should be shown -->
-    <bool name="config_enableMultiUserUI">true</bool>
+
 
     <!--  Maximum number of supported users -->
-    <integer name="config_multiuserMaximumUsers">16</integer>
+
 
    <!-- Set icon mask to circle -->
-   <string name="config_icon_mask" translatable="false">"M50 0A50 50,0,1,1,50 100A50 50,0,1,1,50 0"</string>
+
 
     <!-- Whether action menu items should be displayed in ALLCAPS or not.
          Defaults to true. If this is not appropriate for specific locales
          it should be disabled in that locale's resources. -->
-    <bool name="config_buttonTextAllCaps">false</bool>
+
 
     <!-- Flag indicating whether round icons should be parsed from the application manifest. -->
-    <bool name="config_useRoundIcon">true</bool>
+
 
     <!-- Whether or not we should show the option to show battery percentage -->
-    <bool name="config_battery_percentage_setting_available">false</bool>
+
 
     <!-- Whether desktop mode is supported on the current device  -->
     <bool name="config_isDesktopModeSupported">true</bool>
 
     <!-- List of packages that can use the Conversation space for their category messages
     notifications until they target R -->
-    <string-array name="config_notificationMsgPkgsAllowedAsConvos" translatable="false">
-        <item>com.facebook.orca</item>
-        <item>com.instagram.android</item>
-        <item>com.whatsapp</item>
-        <item>com.snapchat.android</item>
-        <item>jp.naver.line.android</item>
-        <item>com.kakao.talk</item>
-        <item>com.discord</item>
-        <item>org.thoughtcrime.securesms</item>
-        <item>com.groupme.android</item>
-        <item>org.telegram.messenger</item>
-        <item>com.twitter.android</item>
-        <item>com.viber.voip</item>
-        <item>com.linkedin.android</item>
-        <item>com.tencent.mm</item>
-        <item>nekox.messenger</item>
-        <item>org.telegram.plus</item>
-        <item>org.thunderdog.challegram</item>
-        <item>im.vector.app</item>
-        <item>cx.ring</item>
-        <item>org.briarproject.briar.android</item>
-    </string-array>
+
 
     <!-- Define device configs on boot -->
     <string-array name="global_device_configs_override">
@@ -460,19 +439,19 @@
             4 - Go to voice assist
             5 - Go to assistant (Settings.Secure.ASSISTANT)
     -->
-    <integer name="config_longPressOnPowerBehavior">1</integer>
+
 
     <!-- Control the behavior when the user presses the power and volume up buttons together.
             0 - Nothing
             1 - Mute toggle
             2 - Global actions menu
     -->
-    <integer name="config_keyChordPowerVolumeUp">1</integer>
+
 
     <!-- Whether this device is supporting the microphone toggle -->
-    <bool name="config_supportsMicToggle">true</bool>
+
     <!-- Whether this device is supporting the camera toggle -->
-    <bool name="config_supportsCamToggle">true</bool>
+
 
     <!-- Control the default night mode to use when there is no other mode override set.
          One of the following values (see UiModeManager.java):
@@ -480,7 +459,7 @@
              1 - MODE_NIGHT_NO
              2 - MODE_NIGHT_YES
     -->
-    <integer name="config_defaultNightMode">2</integer>
+
 
     <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
          in hardware. -->
@@ -504,16 +483,16 @@
     <string name="config_clockFontFamily" translatable="false" />
 
     <!-- Whether to enable glanceable hub features on this device. -->
-    <bool name="config_glanceableHubEnabled">true</bool>
+
 
     <!-- Whether glanceable hub is enabled by default. -->
-    <bool name="config_glanceableHubEnabledByDefault">true</bool>
+
 
     <!-- Controls the navigation bar interaction mode:
          0: 3 button mode (back, home, overview buttons)
          1: 2 button mode (back, home buttons + swipe up for overview)
          2: gestures only for back, home and overview -->
-    <integer name="config_navBarInteractionMode">3</integer>
+    <integer name="config_navBarInteractionMode">0</integer>
 
     <!-- The default list of possible CMF Names|Style|ColorSource. This array can be
          overridden device-specific resources. A wildcard (fallback) must be supplied.
@@ -521,9 +500,7 @@
          Styles - frameworks/libs/systemui/monet/src/com/android/systemui/monet/Style.java
          Color  - `home_wallpaper` (for color extraction) or a comma-separated list of
                   hexadecimal int (#FFcc99,#aabbcc). -->
-    <string-array name="theming_defaults" translatable="false">
-        <item>*|TONAL_SPOT|#1366A5</item>
-    </string-array>
+
 
     <!-- If AOD can show an ambient version of the wallpaper -->
     <bool name="config_dozeSupportsAodWallpaper">true</bool>
@@ -532,10 +509,10 @@
     <bool name="config_enableBurnInProtection">true</bool>
 
     <!-- Name of the font family to use in the default lockscreen clock -->
-    <string name="config_clockFontFamily" translatable="false" />
+
 
     <!-- If true, all guest users created on the device will be ephemeral. -->
-    <bool name="config_guestUserEphemeral">false</bool>
+
 
     <!-- This config is ued to determine whether animations are allowed in low power mode. -->
     <bool name="config_allowAnimationsInLowPowerMode">false</bool>
@@ -552,16 +529,16 @@
     <string name="config_defaultNetworkRecommendationProviderPackage" translatable="false"></string>
 
     <!-- Integer indicating wpa_supplicant scan interval in milliseconds -->
-    <integer translatable="false" name="config_wifi_supplicant_scan_interval">30000</integer>
+
 
     <!-- Boolean indicating whether or not wifi firmware debugging is enabled -->
-    <bool translatable="false" name="config_wifi_enable_wifi_firmware_debugging">false</bool>
+
 
     <!-- Specifies whether the permissions needed by a legacy app should be
      reviewed before any of its components can run. A legacy app is one
      with targetSdkVersion < 23, i.e apps using the old permission model.
      If review is not required, permissions are reviewed before the app
      is installed. -->
-    <bool name="config_permissionReviewRequired">true</bool>
+
 
 </resources>
