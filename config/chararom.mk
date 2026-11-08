@@ -62,7 +62,13 @@ PRODUCT_PACKAGES += \
     F-DroidPrivilegedExtension \
     EmergencyButton \
     TriggerResponse \
+    FontSanitizer \
     # PackageGuard \ # Not yet ready
+
+# F-Droid XML
+PRODUCT_PACKAGES += \
+    additional_repos.xml-fdroid \
+    additional_repos.json-fdroid
 
 # DeviceAsWebcam
 ifeq ($(TARGET_BUILD_DEVICE_AS_WEBCAM), true)

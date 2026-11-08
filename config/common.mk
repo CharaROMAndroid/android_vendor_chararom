@@ -58,10 +58,6 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += persist.sys.strictmode.disable=true
 endif
 
-# F-Droid XML
-PRODUCT_PACKAGES += \
-    additional_repos.xml-fdroid
-
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
@@ -347,6 +343,3 @@ include vendor/lineage/config/version.mk
 -include vendor/lineage-priv/keys/keys.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
-
-# Permissionless isolated sanitizer required by the custom font pipeline.
-PRODUCT_PACKAGES += FontSanitizer
