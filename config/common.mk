@@ -291,6 +291,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/xbin/su
 endif
 endif
+endif
 
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     AppLocker \
