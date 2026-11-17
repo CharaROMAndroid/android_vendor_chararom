@@ -29,9 +29,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.config.alarm_alert=Krypton.ogg \
     ro.config.ringtone=Champagne_Edition.ogg
 
-# Blur
-ifneq ($(TARGET_SUPPORTS_BLUR),false)
+# Blur is opt-in. Set TARGET_CAN_USE_BLUR := true before inheriting the
+# common CharaROM product configuration. Legacy blur flags do not opt in.
+ifeq ($(TARGET_CAN_USE_BLUR),true)
 PRODUCT_PRODUCT_PROPERTIES += ro.surface_flinger.supports_background_blur=1
+else
+PRODUCT_PRODUCT_PROPERTIES += ro.surface_flinger.supports_background_blur=0
 endif
 
 # Cloned app exemption
