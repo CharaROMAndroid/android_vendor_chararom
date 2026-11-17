@@ -37,6 +37,13 @@ else
 PRODUCT_PRODUCT_PROPERTIES += ro.surface_flinger.supports_background_blur=0
 endif
 
+# Fingerprint navigation controls are strictly device opt-in.
+ifeq ($(TARGET_SUPPORTS_FP_NAV_TOGGLE),true)
+PRODUCT_VENDOR_PROPERTIES += ro.vendor.fingerprint.navigation_toggle=true
+else
+PRODUCT_VENDOR_PROPERTIES += ro.vendor.fingerprint.navigation_toggle=false
+endif
+
 # Cloned app exemption
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-crdroid-product.xml
